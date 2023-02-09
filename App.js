@@ -9,6 +9,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import RestaurantScreen from "./src/features/restaurant/screens/restaurant.screens";
 import { RestaurantsContextProvider } from "./src/services/restaurants/restaurants.context";
+import { LocationContextProvider } from "./src/services/location/location.context";
 import {
   useFonts as useOswald,
   Oswald_400Regular,
@@ -81,12 +82,15 @@ export default function App() {
     <>
 
         <ThemeProvider theme={theme}>
-              <RestaurantsContextProvider>
-          <NavigationContainer>
-            <MyTabs />
-          </NavigationContainer>
+          <LocationContextProvider>
+          <RestaurantsContextProvider>
+            <NavigationContainer>
+              <MyTabs />
+            </NavigationContainer>
 
-              </RestaurantsContextProvider>
+          </RestaurantsContextProvider>
+          </LocationContextProvider>
+    
      
         </ThemeProvider>
 

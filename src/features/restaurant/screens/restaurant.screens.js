@@ -8,10 +8,9 @@ import styled from "styled-components/native";
 import { RestaurantContext } from "../../../services/restaurants/restaurants.context";
 
 import { ActivityIndicator, MD2Colors } from 'react-native-paper';
+import Search from "../components/search.component";
 
-const SearchContainer = styled.View`s
-  padding: ${(props) => props.theme.space[3]};
-`;
+
 const RestaurantListContainer = styled(View)`
   flex: 1;
   padding: ${(props) => props.theme.space[3]};
@@ -42,9 +41,7 @@ const RestaurantScreen = () => {
               <Loading size={60} animating={true} color={MD2Colors.blue800} />
             </LoadingContainer>
           )}
-          <SearchContainer>
-            <Searchbar placeholder="Search" value="" />
-          </SearchContainer>
+     <Search/>
           <RestaurantListContainer>
             <FlatList
               data={restaurants}

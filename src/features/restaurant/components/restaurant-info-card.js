@@ -25,6 +25,7 @@ const RestaurantInfoCard = ({ restaurant = {} }) => {
       "https://www.foodiesfeed.com/wp-content/uploads/2019/06/top-view-for-box-of-2-burgers-home-made-600x899.jpg",
     ],
     address = "100 some random street",
+    placeId,
     isOpenNow = true,
     rating = 4,
     isClosedTemporarily = true,
@@ -39,8 +40,8 @@ const RestaurantInfoCard = ({ restaurant = {} }) => {
         <Text variant="label">{name}</Text>
         <Section>
           <Rating>
-            {ratingArray.map((index) => (
-              <SvgXml key={index} xml={star} width={20} height={20} />
+            {ratingArray.map((_, index) => (
+              <SvgXml key={`star-${placeId}-${index}`} xml={star} width={20} height={20} />
             ))}
           </Rating>
 
