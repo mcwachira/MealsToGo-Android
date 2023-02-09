@@ -8,6 +8,7 @@ import { SafeArea } from "./src/components/utils/safe-area.component";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import RestaurantScreen from "./src/features/restaurant/screens/restaurant.screens";
+import { RestaurantsContextProvider } from "./src/services/restaurants/restaurants.context";
 import {
   useFonts as useOswald,
   Oswald_400Regular,
@@ -78,11 +79,18 @@ export default function App() {
   }
   return (
     <>
-      <ThemeProvider theme={theme}>
-        <NavigationContainer>
-          <MyTabs />
-        </NavigationContainer>
-      </ThemeProvider>
+
+        <ThemeProvider theme={theme}>
+              <RestaurantsContextProvider>
+          <NavigationContainer>
+            <MyTabs />
+          </NavigationContainer>
+
+              </RestaurantsContextProvider>
+     
+        </ThemeProvider>
+
+      
 
       <ExpoStatusBar style="auto" />
     </>
