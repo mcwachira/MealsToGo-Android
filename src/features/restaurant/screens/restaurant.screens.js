@@ -1,6 +1,6 @@
 import React, {useContext} from "react";
 import { StatusBar as ExpoStatusBar } from "expo-status-bar";
-import { FlatList, View } from "react-native";
+import { FlatList, View, TouchableOpacity } from "react-native";
 import { SafeArea } from "../../../components/utils/safe-area.component";
 import { Searchbar } from "react-native-paper";
 import RestaurantInfoCard from "../components/restaurant-info-card";
@@ -26,7 +26,7 @@ position:absolute;
  left:50%;
 
 `
-const RestaurantScreen = () => {
+const RestaurantScreen = ({navigation}) => {
 
   const {isLoading, error, restaurants} = useContext(RestaurantContext)
 
@@ -47,7 +47,17 @@ const RestaurantScreen = () => {
               data={restaurants}
               renderItem={({ item }) => {
                 // console.log(item)
-                return (<RestaurantInfoCard restaurant={item} />
+                return (
+                
+                  <TouchableOpacity onPress={() =>
+                    //passing restaurant on route params
+                     navigation.navigate('RestaurantDetails', {
+                    restaurant:item,
+                  })}>
+
+                    <RestaurantInfoCard restaurant={item} />
+                </TouchableOpacity>
+        
                 )
               }
               }
