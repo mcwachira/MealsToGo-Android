@@ -4,16 +4,12 @@ import { Text } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import {SafeArea} from '../../components/utils/safe-area.component'
 import { RestaurantNavigator } from "./restaurants.navigator";
+import MapScreen from "../../features/maps/screens/map.screens";
+
 
 const Tab = createBottomTabNavigator();
 
-const Maps = () => {
-    return (
-        <SafeArea>
-            <Text>maps</Text>
-        </SafeArea>
-    );
-};
+
 
 const Settings = () => {
     return (
@@ -47,11 +43,12 @@ const AppNavigator = () => {
             tabBarOPtions={{
                 tabBarActiveTintColor: "tomato",
                 tabBarInactiveTintColor: "gray",
+           
             }}
         >
             <Tab.Screen name="Restaurant" component={RestaurantNavigator} />
+            <Tab.Screen name="Maps" component={MapScreen} />
             <Tab.Screen name="Settings" component={Settings} />
-            <Tab.Screen name="Maps" component={Maps} />
         </Tab.Navigator>
     );
 };

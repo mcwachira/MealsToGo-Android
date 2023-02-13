@@ -6,6 +6,7 @@ import { Searchbar } from "react-native-paper";
 import RestaurantInfoCard from "../components/restaurant-info-card";
 import styled from "styled-components/native";
 import { RestaurantContext } from "../../../services/restaurants/restaurants.context";
+import { FavoriteContext } from "../../../services/favorites/favorites.context";
 
 import { ActivityIndicator, MD2Colors } from 'react-native-paper';
 import Search from "../components/search.component";
@@ -29,6 +30,8 @@ position:absolute;
 const RestaurantScreen = ({navigation}) => {
 
   const {isLoading, error, restaurants} = useContext(RestaurantContext)
+  const {favorites} = useContext(FavoriteContext)
+  console.log(favorites)
 
   
   // console.log(restaurants)

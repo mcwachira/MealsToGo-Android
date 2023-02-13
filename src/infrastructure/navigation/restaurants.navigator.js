@@ -9,6 +9,7 @@ export const RestaurantNavigator = () => {
     return (
         <RestaurantStack.Navigator 
             screenOptions={{
+                
                 headerShown: false,
                 ...TransitionPresets.forRevealFromBottomAndroid,
             }}>

@@ -5,6 +5,7 @@ import { theme } from "./src/infrastructure/theme/index";
 import { NavigationContainer } from "@react-navigation/native";
 import { RestaurantsContextProvider } from "./src/services/restaurants/restaurants.context";
 import { LocationContextProvider } from "./src/services/location/location.context";
+import { FavoriteContextProvider } from "./src/services/favorites/favorites.context";
 import {
   useFonts as useOswald,
   Oswald_400Regular,
@@ -29,14 +30,17 @@ export default function App() {
     <>
 
         <ThemeProvider theme={theme}>
+        <FavoriteContextProvider>
           <LocationContextProvider>
           <RestaurantsContextProvider>
+
             <NavigationContainer>
               <Navigation />
             </NavigationContainer>
 
           </RestaurantsContextProvider>
           </LocationContextProvider>
+        </FavoriteContextProvider>
     
      
         </ThemeProvider>
