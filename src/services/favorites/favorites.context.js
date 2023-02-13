@@ -17,7 +17,10 @@
 
         // return favorites.splice(index, 1)
 
-        const newFavorites = favorites.filter((x) => x.placeId != restaurant.placeId)
+        const newFavorites = favorites.filter((x) => x.placeId !== restaurant.placeId)
+
+        setFavorites(newFavorites)
+        
     }
 
     const value ={
