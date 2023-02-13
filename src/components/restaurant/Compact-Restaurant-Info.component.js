@@ -23,11 +23,11 @@ align-items:center
 `
 
 const isAndroid = Platform.OS ==='android'
-const CompactRestaurantInfo = ({restaurant}) => {
+const CompactRestaurantInfo = ({restaurant, isMap}) => {
   console.log(restaurant)
 
-  const Image = isAndroid ? CompactWebView: CompactImage
-  return (
+  const Image = isAndroid && isMap ? CompactWebView: CompactImage
+  return ( 
   <Item>
   <Image source={{uri:restaurant.photos[0]}}/>
   <Text center variant='caption' numberOfLines={3}>

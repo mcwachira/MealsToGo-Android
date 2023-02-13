@@ -9,7 +9,7 @@ const SearchContainer = styled.View`s
 
 
 
-const Search = () => {
+const Search = ({isFavoritesToggled, onFavoritesToggle}) => {
 
     const { search, keyword } = useContext(LocationContext)
     //console.log(keyword)
@@ -23,7 +23,10 @@ const Search = () => {
 
   return (
       <SearchContainer>
-          <Searchbar placeholder="Search"
+          <Searchbar 
+        icon={isFavoritesToggled ? "heart" : "heart-outline"}
+        onIconPress={onFavoritesToggle}
+          placeholder="Search"
            value={searchKeyword}
            onSubmitEditing={() => search(searchKeyword)}
             onChangeText={(text) =>

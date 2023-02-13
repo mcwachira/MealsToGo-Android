@@ -1,17 +1,17 @@
-import React, {useContext} from "react";
+import React, {useContext , useState} from "react";
 import { StatusBar as ExpoStatusBar } from "expo-status-bar";
 import { FlatList, View, TouchableOpacity } from "react-native";
 import { SafeArea } from "../../../components/utils/safe-area.component";
 import { Searchbar } from "react-native-paper";
 import RestaurantInfoCard from "../components/restaurant-info-card";
 import styled from "styled-components/native";
-import { RestaurantContext } from "../../../services/restaurants/restaurants.context";
-import { FavoriteContext } from "../../../services/favorites/favorites.context";
+import Favorite from "../../../components/favorites/favorites.component";
 
 import { ActivityIndicator, MD2Colors } from 'react-native-paper';
 import Search from "../components/search.component";
-
-
+import { RestaurantContext } from "../../../services/restaurants/restaurants.context";
+import { FavoriteContext } from "../../../services/favorites/favorites.context";
+import FavoritesBar from "../../../components/favorites/favorites-bar.component";
 const RestaurantListContainer = styled(View)`
   flex: 1;
   padding: ${(props) => props.theme.space[3]};
@@ -30,8 +30,10 @@ position:absolute;
 const RestaurantScreen = ({navigation}) => {
 
   const {isLoading, error, restaurants} = useContext(RestaurantContext)
-  const {favorites} = useContext(FavoriteContext)
-  console.log(favorites)
+  const { favorites } = useContext(FavoriteContext)
+  const [isToggled , setIsToggled] = useState(false)
+
+
 
   
   // console.log(restaurants)
@@ -44,7 +46,11 @@ const RestaurantScreen = ({navigation}) => {
               <Loading size={60} animating={true} color={MD2Colors.blue800} />
             </LoadingContainer>
           )}
-     <Search/>
+        <Search isFavoritesToggled={isToggled} onFavoritesToggle={() => setIsToggled(!isToggled)} />
+
+        {isToggled && (
+          <FavoritesBar favorites={favorites} onNavigate={navigation.navigate} />
+        )}
           <RestaurantListContainer>
             <FlatList
               data={restaurants}

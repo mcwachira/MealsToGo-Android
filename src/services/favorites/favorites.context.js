@@ -1,4 +1,5 @@
- import React , {createContext, useState} from 'react'
+ import React , {createContext, useEffect, useState} from 'react'
+ import AsyncStorage from '@react-native-async-storage/async-storage'
 
  export const  FavoriteContext = createContext()
 
@@ -6,6 +7,31 @@
 
     const [favorites, setFavorites] = useState([])
 
+
+    const saveFavorites = async(value) => {
+        try{
+            const jsonValue = JSON.stringify(value);
+            await AsyncStorage.setItem('@favorites', jsonValue);
+
+        }catch(e){
+            console.log('error storing ', e)
+        }
+    }
+
+
+
+
+     const loadFavorites = async () => {
+         try {
+             const value = await AsyncStorage.getItem('@favorites');
+             if(value !== null){
+            setFavorites(JSON.parse(value))
+             }
+
+         } catch (e) {
+             console.log('error fetching ', e)
+         }
+     }
 
     const add = (restaurant) => {
         setFavorites([...favorites, restaurant])
@@ -22,6 +48,16 @@
         setFavorites(newFavorites)
         
     }
+
+    //load favorites stored in storage
+    useEffect(() => {
+        loadFavorites()
+    }, [])
+
+    //save to storage every time the favorites array changes
+    useEffect(() => {
+        saveFavorites(favorites)
+    }, [favorites])
 
     const value ={
         favorites,

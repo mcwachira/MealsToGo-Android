@@ -3,7 +3,7 @@ import CompactRestaurantInfo from '../../../components/restaurant/Compact-Restau
 const MapCallout = ({restaurant}) => {
   return (
 
-    <CompactRestaurantInfo restaurant={restaurant}/>
+    <CompactRestaurantInfo isMap restaurant={restaurant}/>
   
   )
 }
