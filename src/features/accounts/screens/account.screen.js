@@ -1,12 +1,13 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { SpacerComponent } from '../../../components/spacer/spacer.component'
-import { AccountBackground, AccountCover, AccountContainer ,AuthButton} from '../components/account.styles'
+import { AccountBackground, AccountCover, AccountContainer ,AuthButton ,Title} from '../components/account.styles'
 
 const AccountScreen = ({navigation}) => {
   return (
       <AccountBackground>
           <AccountCover />
+      <Title>Meals To Go</Title>
           <AccountContainer>
 
 <AuthButton

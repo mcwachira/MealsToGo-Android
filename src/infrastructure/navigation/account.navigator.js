@@ -9,7 +9,7 @@ import LoginScreen from '../../features/accounts/screens/login.screen'
 const Stack = createStackNavigator()
 const AccountNavigator = () =>(
 
-    <Stack.Navigator headerMode='none'>
+    <Stack.Navigator headerShown='false'>
         <Stack.Screen name='Main' component={AccountScreen}/>
 
 
