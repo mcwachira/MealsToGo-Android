@@ -1,26 +1,16 @@
-import React, {useContext} from 'react'
-import {View, Text} from 'react-native'
-import AppNavigator from './app.navigation'
-import { AuthenticationContext } from '../../services/authentication/authentication.context'
-import { NavigationContainer } from '@react-navigation/native'
-import AccountNavigator from './account.navigator'
-import { createStackNavigator } from '@react-navigation/stack'
-const Stack = createStackNavigator()
-const  Navigation = () => {
+import React, { useContext } from "react";
+import AppNavigator from "./app.navigation";
+import { AuthenticationContext } from "../../services/authentication/authentication.context";
+import { NavigationContainer } from "@react-navigation/native";
+import AccountNavigator from "./account.navigator";
 
-  const {isAuthenticated}  = useContext(AuthenticationContext)
+const Navigation = () => {
+  const { isAuthenticated } = useContext(AuthenticationContext);
   return (
     <NavigationContainer>
-      {isAuthenticated ?
-        (<AppNavigator />):(
-      <AccountNavigator />
-      )
-
-      }
+      {isAuthenticated ? <AppNavigator /> : <AccountNavigator />}
     </NavigationContainer>
-  )
+  );
+};
 
-}
-
-export default Navigation
-
+export default Navigation;
