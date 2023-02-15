@@ -11,13 +11,14 @@ import {
 import { SpacerComponent } from "../../../components/spacer/spacer.component";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 import { Text } from "../../../components/typography/text.component";
+import { ActivityIndicator, MD2Colors } from "react-native-paper";
 
 const RegisterScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  const { onRegister, error } = useContext(AuthenticationContext);
+  const { onRegister, error, isLoading } = useContext(AuthenticationContext);
   return (
     <AccountBackground>
       <Title>Meals To Go</Title>
@@ -59,13 +60,17 @@ const RegisterScreen = ({ navigation }) => {
           </ErrorContainer>
         )}
         <SpacerComponent size="large">
-          <AuthButton
-            icon="email"
-            mode="contained"
-            onPress={() => onRegister(email, password, confirmPassword)}
-          >
-            Register
-          </AuthButton>
+          {!isLoading ? (
+            <AuthButton
+              icon="email"
+              mode="contained"
+              onPress={() => onRegister(email, password, confirmPassword)}
+            >
+              Register
+            </AuthButton>
+          ) : (
+            <ActivityIndicator animating={true} color={MD2Colors.blue300} />
+          )}
         </SpacerComponent>
       </AccountContainer>
 

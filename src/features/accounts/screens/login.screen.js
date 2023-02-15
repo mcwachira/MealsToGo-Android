@@ -1,69 +1,74 @@
-import styled from 'styled-components/native'
+import styled from "styled-components/native";
 
-import React, {useState, useContext} from 'react'
-import { AccountBackground , AccountContainer, AuthButton , AuthInput, Title , ErrorContainer} from '../components/account.styles'
-import { SpacerComponent } from '../../../components/spacer/spacer.component'
-import { AuthenticationContext } from '../../../services/authentication/authentication.context'
-import { Text } from '../../../components/typography/text.component'
+import React, { useState, useContext } from "react";
+import {
+  AccountBackground,
+  AccountContainer,
+  AuthButton,
+  AuthInput,
+  Title,
+  ErrorContainer,
+} from "../components/account.styles";
+import { SpacerComponent } from "../../../components/spacer/spacer.component";
+import { AuthenticationContext } from "../../../services/authentication/authentication.context";
+import { Text } from "../../../components/typography/text.component";
+import { ActivityIndicator, MD2Colors } from "react-native-paper";
 
+const LoginScreen = ({ navigation }) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-const LoginScreen = ({navigation}) => {
-const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-
-
-  const { onLogin, error } = useContext(AuthenticationContext);
+  const { onLogin, error, isLoading } = useContext(AuthenticationContext);
   return (
-      <AccountBackground>
-
+    <AccountBackground>
       <Title>Meals To Go</Title>
-        <AccountContainer>
-
+      <AccountContainer>
         <AuthInput
-        label='E-mail'
-        value={email}
-        textContentType='emailAddress'
-        keyBoardType='email-address'
-        autoCapitalize='none'
+          label="E-mail"
+          value={email}
+          textContentType="emailAddress"
+          keyBoardType="email-address"
+          autoCapitalize="none"
           onChangeText={(u) => setEmail(u)}
         />
-        <SpacerComponent size='large'>
+        <SpacerComponent size="large">
           <AuthInput
             label="Password"
             value={password}
-            textContentType='password'
-
+            textContentType="password"
             //difference between secure entry and secure
             secureTextEntry
-            autoCapitalize='none'
-            onChangeText={p => setPassword(p)}
+            autoCapitalize="none"
+            onChangeText={(p) => setPassword(p)}
           />
-</SpacerComponent>
+        </SpacerComponent>
         {error && (
           <ErrorContainer size="large">
             <Text variant="error">{error}</Text>
           </ErrorContainer>
         )}
-        <SpacerComponent size='large'>
-          <AuthButton
-            icon='lock-open-outline'
-            mode='contained'
-            onPress={() => onLogin(email, password)}>
-
-            Login
-          </AuthButton>
+        <SpacerComponent size="large">
+          {!isLoading ? (
+            <AuthButton
+              icon="lock-open-outline"
+              mode="contained"
+              onPress={() => onLogin(email, password)}
+            >
+              Login
+            </AuthButton>
+          ) : (
+            <ActivityIndicator animating={true} color={MD2Colors.blue300} />
+          )}
         </SpacerComponent>
-   
-        </AccountContainer>
+      </AccountContainer>
 
       <SpacerComponent size="large">
         <AuthButton mode="contained" onPress={() => navigation.goBack()}>
           Back
         </AuthButton>
       </SpacerComponent>
-    
-      </AccountBackground>
-  )
-}
+    </AccountBackground>
+  );
+};
 
-export default LoginScreen
+export default LoginScreen;
