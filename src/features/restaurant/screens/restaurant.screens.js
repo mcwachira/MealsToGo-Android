@@ -12,7 +12,11 @@ import Search from "../components/search.component";
 import { RestaurantContext } from "../../../services/restaurants/restaurants.context";
 import { FavoriteContext } from "../../../services/favorites/favorites.context";
 import FavoritesBar from "../../../components/favorites/favorites-bar.component";
+
+import { FadeInView } from "../../../components/animations/fade.amimation";
+
 const RestaurantListContainer = styled(View)`
+
   flex: 1;
   padding: ${(props) => props.theme.space[3]};
 `;
@@ -65,7 +69,10 @@ const RestaurantScreen = ({ navigation }) => {
                   })
                 }
               >
-                <RestaurantInfoCard restaurant={item} />
+                <FadeInView>
+                  <RestaurantInfoCard restaurant={item} />
+                </FadeInView>
+  
               </TouchableOpacity>
             );
           }}
