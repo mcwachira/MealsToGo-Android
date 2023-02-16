@@ -6,10 +6,11 @@ import {
 } from "@react-navigation/stack";
 import SettingsScreen from "../../features/settings/screens/settings.screens";
 import FavoritesScreen from "../../features/settings/screens/favorites.screen";
+import CameraScreen from "../../features/settings/screens/camera.screens";
 
 const SettingsStack = createStackNavigator();
 
-export const SettingsNavigator = ({route, navigation}) => {
+export const SettingsNavigator = ({ route, navigation }) => {
   return (
     <SettingsStack.Navigator
       screenOptions={{
@@ -19,8 +20,9 @@ export const SettingsNavigator = ({route, navigation}) => {
       }}
     >
       <SettingsStack.Screen name="Settings" component={SettingsScreen} />
-
       <SettingsStack.Screen name="Favorites" component={FavoritesScreen} />
+      <SettingsStack.Screen name="Camera" component={CameraScreen} />
+   
     </SettingsStack.Navigator>
   );
 };
