@@ -54,7 +54,7 @@ export const FavoriteContextProvider = ({ children }) => {
 
   //save to storage every time the favorites array changes
   useEffect(() => {
-      if (user && user.uid && favorites.length) {
+    if (user && user.uid && favorites.length) {
       saveFavorites(favorites, user.uid);
     }
   }, [favorites, user]);
