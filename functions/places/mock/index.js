@@ -20,9 +20,10 @@ const mockImages = [
 ];
 
 module.exports.addMockImage = (restaurant) => {
-  const randomImage = mockImages[Math.ceil(Math.random() * (mockImages.length - 1))];
+  const randomImage =
+    mockImages[Math.ceil(Math.random() * (mockImages.length - 1))];
 
-  restaurant.photo = [randomImage];
+  restaurant.photos = [randomImage];
 
   return restaurant;
 };

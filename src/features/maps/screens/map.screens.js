@@ -21,7 +21,7 @@ const MapScreen = ({ navigation }) => {
 
   const { lat, lng, viewport } = location;
 
-  console.log(restaurants)
+  // console.log(restaurants);
   useEffect(() => {
     const northeastLat = viewport.northeast.lat;
     const southwestLat = viewport.southwest.lat;
@@ -41,7 +41,7 @@ const MapScreen = ({ navigation }) => {
         }}
       >
         {restaurants.map((restaurant) => {
-          console.log(restaurant);
+          // console.log(restaurant);
           return (
             <Marker
               key={restaurant.name}

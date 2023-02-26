@@ -1,4 +1,6 @@
-const { mocks, addMockImages } = require("./mock");
+const { mocks, addMockImage } = require("./mock");
+
+
 
 const url = require("url");
 
@@ -8,7 +10,7 @@ module.exports.placesRequest = (request, response) => {
   const data = mocks[location];
 
   if (data) {
-    data.results = data.results.map(addMockImages);
+    data.results = data.results.map(addMockImage);
   }
 
   response.json(data);

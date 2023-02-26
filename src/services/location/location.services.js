@@ -7,8 +7,16 @@ export const locationRequest = async (searchTerm) => {
   return await res.json();
 };
 
+// export const locationRequest = (searchTerm) => {
+//   return fetch(
+//     `http://127.0.0.1:5001/mealstogo-97a67/us-central1/geocode?city=${searchTerm}`
+//   ).then((res) => {
+//     console.log(`this are the results ${res}`);
+//     return res.json();
+//   });
+// };
 export const locationTransform = (result) => {
-  console.log(result);
+  // console.log(result);
   const formattedResponse = camelize(result);
   const { geometry = {} } = formattedResponse.results[0];
   const { lat, lng } = geometry.location;
