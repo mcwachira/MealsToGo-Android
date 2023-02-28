@@ -1,8 +1,8 @@
 {
   "expo": {
     "name": "MealsToGo",
-    "slug": "restaurant-ecommerce-app",
-    "version": "0.0.1",
+    "slug": "MealsToGo",
+    "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -10,9 +10,6 @@
       "image": "./assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
-    },
-    "updates": {
-      "fallbackToCacheTimeout": 0
     },
     "assetBundlePatterns": [
       "**/*"
@@ -22,16 +19,12 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/icon.png",
-        "backgroundColor": "#FFFFFF"
-      },
-      "package": "com.mcwachira.restaurantecommerceapp"
-    },
-    "extra": {
-      "eas": {
-        "projectId": "405fc096-fb8b-4af3-8c53-49ea02992197"
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
       }
     },
-    "owner": "mcwachira"
+    "web": {
+      "favicon": "./assets/favicon.png"
+    }
   }
 }
