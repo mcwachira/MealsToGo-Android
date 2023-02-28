@@ -4,7 +4,7 @@ import { Text, Button } from "react-native";
 
 import { Ionicons } from "@expo/vector-icons";
 import { RestaurantNavigator } from "./restaurants.navigator";
-import MapScreen from "../../features/maps/screens/map.screens";
+import {MapScreen } from "../../features/maps/screens/map.screens";
 import { FavoriteContextProvider } from "../../services/favorites/favorites.context";
 import { RestaurantsContextProvider } from "../../services/restaurants/restaurants.context";
 import { LocationContextProvider } from "../../services/location/location.context";

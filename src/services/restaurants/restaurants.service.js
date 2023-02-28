@@ -1,10 +1,10 @@
 // import { mocks, mockImages } from "../../../functions/places/mock";
 import camelize from "camelize";
-import { host } from "../../utils/env";
+import { host, isMock } from "../../utils/env";
 export const restaurantsRequest = async (
   location = "37.7749295,-122.4194155"
 ) => {
-  const res = await fetch(`${host}/placesNearBy?location=${location}`);
+  const res = await fetch(`${host}/placesNearBy?location=${location}&mock={isMock}`);
   return await res.json();
   //use async await
   // return new Promise((resolve, reject) => {

@@ -14,9 +14,10 @@ import { FavoriteContext } from "../../../services/favorites/favorites.context";
 import FavoritesBar from "../../../components/favorites/favorites-bar.component";
 
 import { FadeInView } from "../../../components/animations/fade.amimation";
-
+import { LocationContext } from "../../../services/location/location.context";
+import { Text } from "../../../components/typography/text.component";
+import { SpacerComponent } from "../../../components/spacer/spacer.component";
 const RestaurantListContainer = styled(View)`
-
   flex: 1;
   padding: ${(props) => props.theme.space[3]};
 `;
@@ -30,8 +31,13 @@ const LoadingContainer = styled.View`
   top: 50%;
   left: 50%;
 `;
+
+
 const RestaurantScreen = ({ navigation }) => {
+  const { error: locationError } = useContext(LocationContext);
   const { isLoading, error, restaurants } = useContext(RestaurantContext);
+
+  const hasError = !!error || !!locationError;
   const { favorites } = useContext(FavoriteContext);
   const [isToggled, setIsToggled] = useState(false);
 
@@ -55,31 +61,38 @@ const RestaurantScreen = ({ navigation }) => {
             onNavigate={navigation.navigate}
           />
         )}
-
-        <RestaurantList
-          data={restaurants}
-          renderItem={({ item }) => {
-            // console.log(item)
-            return (
-              <TouchableOpacity
-                onPress={() =>
-                  //passing restaurant on route params
-                  navigation.navigate("RestaurantDetails", {
-                    restaurant: item,
-                  })
-                }
-              >
-                <FadeInView>
-                  <RestaurantInfoCard restaurant={item} />
-                </FadeInView>
-  
-              </TouchableOpacity>
-            );
-          }}
-          keyExtractor={(item) => item.name}
-          //ionline styling for a flat ist
-          contentContainerStyle={{ padding: 16 }}
-        />
+        {hasError && (
+          <SpacerComponent position="left" size="large">
+            <Text variant="error">
+              Something went wrong retrieving the data
+            </Text>
+          </SpacerComponent>
+        )}
+        {!hasError && (
+          <RestaurantList
+            data={restaurants}
+            renderItem={({ item }) => {
+              // console.log(item)
+              return (
+                <TouchableOpacity
+                  onPress={() =>
+                    //passing restaurant on route params
+                    navigation.navigate("RestaurantDetails", {
+                      restaurant: item,
+                    })
+                  }
+                >
+                  <FadeInView>
+                    <RestaurantInfoCard restaurant={item} />
+                  </FadeInView>
+                </TouchableOpacity>
+              );
+            }}
+            keyExtractor={(item) => item.name}
+            //ionline styling for a flat ist
+            contentContainerStyle={{ padding: 16 }}
+          />
+        )}
       </SafeArea>
       <ExpoStatusBar style="auto" />
     </>

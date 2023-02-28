@@ -23,7 +23,7 @@ const Item = styled.View`
 
 const isAndroid = Platform.OS === "android";
 const CompactRestaurantInfo = ({ restaurant, isMap }) => {
-  console.log(restaurant.photos[0]);
+  // console.log(restaurant.photos[0]);
 
   const Image = isAndroid && isMap ? CompactWebView : CompactImage;
   return (
